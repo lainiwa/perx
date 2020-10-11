@@ -17,5 +17,5 @@ Enpoints
 #. Сделал скрипт ``start.sh`` в качестве демо. Запускает серевер, создает 3 задачи, а потом бесконечно трогает ``/peek`` и выводит состояние очереди.
 
 
-.. image:: https://asciinema.org/a/364157.svg
-   :target: https://asciinema.org/a/364157
+.. image:: https://asciinema.org/a/364626.svg
+   :target: https://asciinema.org/a/364626
