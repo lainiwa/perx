@@ -14,7 +14,7 @@ while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/peek)" != "2
 
 # Create some tasks
 http POST :8000/enqueue n==10 d==1 interval==2
-http POST :8000/enqueue n==10 d==2 interval==2
+http POST :8000/enqueue n==15 d==2 interval==2
 http POST :8000/enqueue n==10 d==3 interval==2
 
 # Continuously touch endpoint

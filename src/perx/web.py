@@ -1,6 +1,6 @@
 from aiohttp import web
 from pydantic.error_wrappers import ValidationError
-from perx import queue, results
+from perx import queue, processed, results
 from perx.models import Task, Result
 
 routes = web.RouteTableDef()
@@ -21,6 +21,8 @@ async def enqueue(request):
 async def peek(request):
     print('Results: ', results)
 
+    peek_list = [result for result in processed if result] + queue
+
     resp = [{
         'n_in_queue': i,
         'status': 'active' if isinstance(task, Result) else 'waiting',
@@ -30,7 +32,7 @@ async def peek(request):
         'interval': task.interval,
         'current_val': task.current_val if isinstance(task, Result) else None,
         'started': task.started.isoformat() if isinstance(task, Result) else None,
-    } for i, task in enumerate(queue)]
+    } for i, task in enumerate(peek_list)]
 
     return web.json_response(resp)
 

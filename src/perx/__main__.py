@@ -1,5 +1,4 @@
 import asyncio
-from itertools import repeat
 
 from aiohttp import web
 from perx.web import app
@@ -9,7 +8,7 @@ from perx.config import settings
 async def main():
     await asyncio.gather(
         web._run_app(app, port=8000),
-        *repeat(consumer(), settings.workers_num),
+        *[consumer(idx=i) for i in range(settings.workers_num)],
     )
 
 
